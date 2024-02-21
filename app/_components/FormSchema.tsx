@@ -7,6 +7,9 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { FormValues } from "../types";
+import Checkbox from "@mui/material/Checkbox";
+import { FormControlLabel, FormControl, FormHelperText } from "@mui/material";
+import ThankYouComponent from "./ThankYouComponent";
 
 const schema: ZodType<FormValues> = z.object({
   name: z.string().min(2).max(30),
@@ -17,10 +20,14 @@ const schema: ZodType<FormValues> = z.object({
     .refine((value) => !/(hotmail|gmail)\.com$/.test(value), {
       message: "Need to be a company email",
     }),
+  gdpr: z.boolean().refine((value) => value === true, {
+    message: "You must agree to the GDPR terms to continue",
+  }),
 });
 
 const submitUser = async (data: FormValues) => {
   try {
+    // Is there a better way than a for loop?
     const formData = new FormData();
     for (const key in data) {
       formData.append("Name", data.name);
@@ -70,7 +77,7 @@ const ContactForm: React.FC = () => {
   };
 
   if (isSubmitted) {
-    return <h1>Thank you for submitting the form!</h1>;
+    return <ThankYouComponent />;
   }
 
   return (
@@ -79,11 +86,8 @@ const ContactForm: React.FC = () => {
       onSubmit={handleSubmit(onSubmit)}
       sx={{
         display: "flex",
-        justifyContent: "center",
         flexDirection: "column",
-        alignContent: "center",
         gap: "1rem",
-        width: "90%",
       }}
       noValidate
       autoComplete="off"
@@ -122,6 +126,14 @@ const ContactForm: React.FC = () => {
       >
         {isLoading ? "Loading..." : "Submit"}
       </Button>
+      <FormControl error={!!errors.gdpr}>
+        <FormHelperText>{errors.gdpr?.message}</FormHelperText>
+        <FormControlLabel
+          control={<Checkbox {...register("gdpr")} />}
+          label="By checking this box, I consent to my information being shared with Sitecore & SQLI & consent to receive communications about Sitecore’s and SQLI’s business in accordance with Sitecore’s Privacy Policy and SQLI's privacy policy. I understand that I can opt-out at any time."
+          sx={{ ".MuiFormControlLabel-label": { fontSize: "0.8rem" } }}
+        />
+      </FormControl>
     </Box>
   );
 };
