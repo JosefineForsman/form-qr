@@ -11,8 +11,6 @@ export default function Home() {
         alignItems: "center",
         justifyContent: "center",
         height: "100vh",
-        width: "100%",
-        // backgroundColor: "hotpink",
       }}
     >
       <Box
@@ -24,7 +22,19 @@ export default function Home() {
           flexDirection: "column",
         }}
       >
-        <Typography marginBottom="20px">Sign up and get candy!</Typography>
+        <Typography
+          marginBottom="20px"
+          variant="h4"
+          sx={{
+            fontSize: {
+              xs: "1.5rem",
+              sm: "2rem",
+              md: "2.2rem",
+            },
+          }}
+        >
+          SQLI & SITECORE
+        </Typography>
         <FormSchema />
       </Box>
     </Container>
