@@ -17,7 +17,7 @@ const schema: ZodType<FormValues> = z.object({
   email: z
     .string()
     .email()
-    .refine((value) => !/(hotmail|gmail)\.com$/.test(value), {
+    .refine((value) => !/(hotmail|gmail)\.(com|se)$/.test(value), {
       message: "Need to be a company email",
     }),
   gdpr: z.boolean().refine((value) => value === true, {
