@@ -1,5 +1,7 @@
 import FormSchema from "./_components/FormSchema";
 import { Container, Box, Typography } from "@mui/material";
+import Image from "next/image";
+import { Divider } from "@mui/material";
 
 export default function Home() {
   return (
@@ -9,7 +11,6 @@ export default function Home() {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        justifyContent: "center",
         height: "100vh",
       }}
     >
@@ -17,7 +18,7 @@ export default function Home() {
         sx={{
           width: "100%",
           display: "flex",
-          justifyContent: "center",
+          // justifyContent: "center",
           alignItems: "center",
           flexDirection: "column",
         }}
@@ -33,7 +34,27 @@ export default function Home() {
             },
           }}
         >
-          SQLI & SITECORE
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              gap: "19px",
+              margin: "50px auto 40px auto", // 'auto' is shorthand for 'top right bottom left'
+              alignItems: "center",
+            }}
+          >
+            <Image src="/sqli.svg" alt="SQLI" width="100" height="100" />
+            <Divider
+              orientation="vertical"
+              variant="middle"
+              sx={{
+                borderColor: "black",
+                borderLeft: "0.5px solid",
+                height: "100px",
+              }}
+            />
+            <Image src="/sitecore.svg" alt="SQLI" width="140" height="100" />
+          </Box>
         </Typography>
         <FormSchema />
       </Box>

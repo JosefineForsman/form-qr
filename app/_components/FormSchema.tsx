@@ -131,7 +131,7 @@ const ContactForm: React.FC = () => {
         <FormControlLabel
           control={<Checkbox {...register("gdpr")} />}
           label="By checking this box, I consent to my information being shared with Sitecore and SQLI & consent to receive communications about Sitecore’s and SQLI’s business in accordance with Sitecore’s Privacy Policy and SQLI's privacy policy. I understand that I can opt-out at any time."
-          sx={{ ".MuiFormControlLabel-label": { fontSize: "0.8rem" } }}
+          sx={{ ".MuiFormControlLabel-label": { fontSize: "0.65rem" } }}
         />
       </FormControl>
     </Box>
